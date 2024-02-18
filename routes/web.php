@@ -4,6 +4,7 @@ use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\Controller;
 use Illuminate\Foundation\Application;
 use App\Http\Controllers\AppController;
+use App\Http\Controllers\ShortController;
 use Illuminate\Support\Facades\Route;
 use Inertia\Inertia;
 
@@ -21,6 +22,9 @@ use Inertia\Inertia;
 Route::get('/', [Controller::class, 'index']);
 
 Route::get('/app', [AppController::class, 'index'])->name('app.index');
+Route::post('/app', [AppController::class, 'getVideo'])->name('app.getVideo');
+
+Route::get('/short', [ShortController::class, 'index'])->name('short.index');
 
 Route::get('/dashboard', function () {
     return Inertia::render('Dashboard');

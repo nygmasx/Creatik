@@ -23,7 +23,11 @@ export const DashMain = ({thumbnail}: PageProps<{thumbnail: string}>) => {
                 <div className="w-full flex justify-between items-center">
                     <h1 className="text-4xl text-white font-bold">Workspace</h1>
 
-                    <button className="text-black flex items-center text-md font-semibold p-3 bg-yellow-400 rounded-lg"><BiUpload className="mr-2"/> Import</button>
+                    <button
+                        onClick={openModal}
+                        className="text-black flex items-center text-md font-semibold p-3 bg-yellow-400 rounded-lg">
+                        <BiUpload className="mr-2"/> Import
+                    </button>
                 </div>
                 <div className="w-full bg-[#222] h-[500px] mt-5 rounded-xl">
                     <div className="h-[10%] font-semibold">
@@ -32,7 +36,8 @@ export const DashMain = ({thumbnail}: PageProps<{thumbnail: string}>) => {
                     </div>
                     <div className="h-[90%] flex justify-center items-center">
                         <div className=" w-[98%] h-[95%] border-2 border-dashed border-gray-600 rounded-xl">
-                            <button type="button" onClick={openModal} className="w-full h-full flex flex-col justify-center items-center hover:bg-neutral-700 hover:transition-all ease-in-out rounded-xl">
+                            <button type="button" onClick={openModal} className="w-full h-full flex flex-col justify-center
+                                    items-center hover:bg-neutral-700 hover:transition-all ease-in-out rounded-xl">
                                 <BiUpload className="text-5xl"/>
                                 <p className="text-white font-semibold">It seems you don't have any videos yet.</p>
                                 <p className="text-sm text-yellow-400 font-semibold">Click here to import your first videos.</p>

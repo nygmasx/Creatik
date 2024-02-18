@@ -37,7 +37,7 @@ export const Navbar = () => {
 
     return (
 
-        <div className="flex justify-center items-center bg-neutral-800 h-16 mx-auto">
+        <div className="flex justify-center items-center bg-neutral-800 h-16 mx-auto border-b border-b-neutral-700">
             <div className="w-[90%] 2xl:px-36 px-0 flex items-center justify-between">
                 <div className="flex items-center">
                     <div className="w-[165px]">
@@ -54,9 +54,9 @@ export const Navbar = () => {
                     </div>
                 </div>
                 <div>
-                    <button className="flex text-white items-center hover:bg-neutral-700 hover:transition-all p-2 rounded">
+                    <a href={route('short.index')} className="flex text-white items-center hover:bg-neutral-700 hover:transition-all p-2 rounded">
                         <BiSolidUser className="mr-2"/> My Account
-                    </button>
+                    </a>
                 </div>
             </div>
         </div>
