@@ -41,7 +41,7 @@ export const Navbar = () => {
             <div className="w-[90%] 2xl:px-36 px-0 flex items-center justify-between">
                 <div className="flex items-center">
                     <div className="w-[165px]">
-                        <img srcSet="/img/logo-light.webp" alt=""/>
+                        <img srcSet="/img/logo.png" alt=""/>
                     </div>
                     <div className="flex">
                         <ul className="mx-8">

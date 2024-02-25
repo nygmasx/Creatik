@@ -25,13 +25,13 @@ export const DashMain = ({thumbnail}: PageProps<{thumbnail: string}>) => {
 
                     <button
                         onClick={openModal}
-                        className="text-black flex items-center text-md font-semibold p-3 bg-yellow-400 rounded-lg">
+                        className="text-black flex items-center text-md font-semibold p-3 bg-[#9EDBF4] rounded-lg">
                         <BiUpload className="mr-2"/> Import
                     </button>
                 </div>
                 <div className="w-full bg-[#222] h-[500px] mt-5 rounded-xl">
                     <div className="h-[10%] font-semibold">
-                        <button className="p-3 text-yellow-400 border-b-2 border-b-yellow-400">MY VIDEOS</button>
+                        <button className="p-3 text-[#9EDBF4] border-b-2 border-b-[#9EDBF4]">MY VIDEOS</button>
                         <button className="p-3 text-gray-500">MY SHORTS</button>
                     </div>
                     <div className="h-[90%] flex justify-center items-center">
@@ -40,7 +40,7 @@ export const DashMain = ({thumbnail}: PageProps<{thumbnail: string}>) => {
                                     items-center hover:bg-neutral-700 hover:transition-all ease-in-out rounded-xl">
                                 <BiUpload className="text-5xl"/>
                                 <p className="text-white font-semibold">It seems you don't have any videos yet.</p>
-                                <p className="text-sm text-yellow-400 font-semibold">Click here to import your first videos.</p>
+                                <p className="text-sm text-[#9EDBF4] font-semibold">Click here to import your first videos.</p>
                             </button>
                         </div>
                         <Transition appear show={isOpen} as={Fragment}>

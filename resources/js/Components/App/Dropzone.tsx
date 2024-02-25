@@ -64,7 +64,7 @@ export const Dropzone = ({ thumbnail }: PageProps<{ thumbnail: string }>) => {
                         <Dialog.Panel className="w-full max-w-[650px] h-[500px] transform overflow-hidden rounded-3xl bg-[#222] p-6 text-left align-middle shadow-xl transition-all grid">
                             <div className="flex items-center justify-center h-full max-h-1/2">
                                 <div className="flex justify-center items-center border rounded-2xl w-6/12 h-1/4 p-6">
-                                    <AiFillYoutube className="text-3xl text-yellow-400" />
+                                    <AiFillYoutube className="text-3xl text-[#9EDBF4]" />
                                     <input
                                         type="text"
                                         value={data.url}
@@ -84,7 +84,7 @@ export const Dropzone = ({ thumbnail }: PageProps<{ thumbnail: string }>) => {
                                     </div>
                                     <div className="flex items-center justify-center h-1/2 w-full mt-6">
                                         {loading ? (
-                                            <button className="text-black flex items-center justify-center text-md font-semibold p-3 bg-yellow-400 rounded-lg">
+                                            <button className="text-black flex items-center justify-center text-md font-semibold p-3 bg-[#9EDBF4] rounded-lg">
                                                 {done ? (
                                                     <>
                                                         <CheckIcon className="mr-2 h-4 w-4" /> Téléchargement terminé
@@ -97,7 +97,7 @@ export const Dropzone = ({ thumbnail }: PageProps<{ thumbnail: string }>) => {
                                                 )}
                                             </button>
                                         ) : (
-                                            <button className="text-black flex items-center justify-center text-md font-semibold p-3 bg-yellow-400 rounded-lg" onClick={(e) => download(e)}>
+                                            <button className="text-black flex items-center justify-center text-md font-semibold p-3 bg-[#9EDBF4] rounded-lg" onClick={(e) => download(e)}>
                                                 <BiUpload className="mr-2" /> Import
                                             </button>
                                         )}
