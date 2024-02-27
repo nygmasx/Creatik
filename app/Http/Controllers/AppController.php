@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Video;
 use GuzzleHttp\Client;
 use Illuminate\Foundation\Auth\Access\AuthorizesRequests;
 use Illuminate\Foundation\Validation\ValidatesRequests;
@@ -41,20 +42,26 @@ class AppController extends BaseController
 
         $youtube = new YouTubeDownloader();
 
+        $video = new Video();
+
         try {
             $downloadOptions = $youtube->getDownloadLinks($url);
 
             if ($downloadOptions->getAllFormats()) {
-               $result = $downloadOptions->getCombinedFormats()[1]->url;
+                $result = $downloadOptions->getCombinedFormats()[1]->url;
+                $video->duration = $downloadOptions->getInfo()->durationSeconds;
+                $video->user_id = $request->getUser()->getId();
 
-               $response = Http::get($result);
-               if ($response->successful()){
-                   $fileName = 'video'.uuid_create().'.mp4';
-                   $path = storage_path('videos/'. $fileName);
-                   file_put_contents($path, $response->body());
-               }else{
-                   dd('NONONON');
-               }
+                $response = Http::get($result);
+                if ($response->successful()){
+                    $fileName = 'video'.uuid_create().'.mp4';
+                    $video->title = $fileName;
+                    $path = storage_path('videos/'. $fileName);
+                    file_put_contents($path, $response->body());
+                    $video->save();
+                }else{
+                    dd('NONONON');
+                }
 
             } else {
                 echo 'No links found';

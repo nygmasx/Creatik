@@ -54,7 +54,7 @@ export const Navbar = () => {
                     </div>
                 </div>
                 <div>
-                    <a href={route('short.index')} className="flex text-white items-center hover:bg-neutral-700 hover:transition-all p-2 rounded">
+                    <a href={route('profile.edit')} className="flex text-white items-center hover:bg-neutral-700 hover:transition-all p-2 rounded">
                         <BiSolidUser className="mr-2"/> My Account
                     </a>
                 </div>
