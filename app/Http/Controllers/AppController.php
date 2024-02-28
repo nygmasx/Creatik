@@ -20,7 +20,9 @@ class AppController extends BaseController
 
     public function index(Request $request): Response
     {
-        return Inertia::render('App/Index');
+        return Inertia::render('App/Index', [
+            'videos' => Inertia::lazy(fn() => Video::get())
+        ]);
     }
 
     public function getUrl(Request $request): Response
@@ -50,7 +52,7 @@ class AppController extends BaseController
             if ($downloadOptions->getAllFormats()) {
                 $result = $downloadOptions->getCombinedFormats()[1]->url;
                 $video->duration = $downloadOptions->getInfo()->durationSeconds;
-                $video->user_id = $request->getUser()->getId();
+                $video->user_id = $request->user()->id;
 
                 $response = Http::get($result);
                 if ($response->successful()){
@@ -58,6 +60,7 @@ class AppController extends BaseController
                     $video->title = $fileName;
                     $path = storage_path('videos/'. $fileName);
                     file_put_contents($path, $response->body());
+                    $video->size = filesize($path);
                     $video->save();
                 }else{
                     dd('NONONON');

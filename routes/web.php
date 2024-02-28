@@ -21,7 +21,7 @@ use Inertia\Inertia;
 
 Route::get('/', [Controller::class, 'index']);
 
-Route::get('/app', [AppController::class, 'index'])->name('app.index');
+Route::get('/app', [AppController::class, 'index'])->name('app.index')->middleware(['auth', 'verified']);
 Route::post('/app', [AppController::class, 'getVideo'])->name('app.getVideo');
 
 Route::get('/short', [ShortController::class, 'index'])->name('short.index');

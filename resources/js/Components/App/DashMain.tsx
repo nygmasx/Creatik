@@ -5,7 +5,7 @@ import {Dropzone} from "./Dropzone";
 import {PageProps} from "@/types";
 
 
-export const DashMain = ({thumbnail}: PageProps<{thumbnail: string}>) => {
+export const DashMain = ({videos}: PageProps<{videos: string}>) => {
 
     const [isOpen, setIsOpen] = useState(false);
 
@@ -45,7 +45,7 @@ export const DashMain = ({thumbnail}: PageProps<{thumbnail: string}>) => {
                         </div>
                         <Transition appear show={isOpen} as={Fragment}>
                             <Dialog as="div" className="relative z-10" onClose={closeModal}>
-                                <Dropzone thumbnail={thumbnail}/>
+                                <Dropzone/>
                             </Dialog>
                         </Transition>
                     </div>

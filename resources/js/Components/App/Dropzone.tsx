@@ -1,21 +1,24 @@
-import React, { Fragment, useState } from "react";
-import { Dialog, Transition } from "@headlessui/react";
-import { AiFillYoutube } from "react-icons/ai";
-import { BiUpload } from "react-icons/bi";
-import { useForm } from "@inertiajs/react";
+import React, {Fragment, useEffect, useState} from "react";
+import {Dialog, Transition} from "@headlessui/react";
+import {AiFillYoutube} from "react-icons/ai";
+import {BiUpload} from "react-icons/bi";
+import {router, useForm} from "@inertiajs/react";
 import {CheckIcon, ReloadIcon} from "@radix-ui/react-icons";
-import { PageProps } from "@/types";
+import {PageProps} from "@/types";
 
-export const Dropzone = ({ thumbnail }: PageProps<{ thumbnail: string }>) => {
-    const { data, setData, post, processing, reset, errors } = useForm({
+export const Dropzone = () => {
+    const {data, setData, post, processing, reset, errors} = useForm({
         url: '',
     });
 
     const [realId, setRealId] = useState('');
     const [loading, setLoading] = useState(false);
     const [done, setDone] = useState(false);
+    const [isEmpty, setIsEmpty] = useState(true);
 
-    const download = (e) => {
+    router.reload({only: ['videos']});
+
+    const download = ({e}: { e: any }) => {
         setLoading(true);
         e.preventDefault();
         post(route('app.getVideo'), {
@@ -29,7 +32,7 @@ export const Dropzone = ({ thumbnail }: PageProps<{ thumbnail: string }>) => {
         }
     };
 
-    const updateRealId = ({ link }: { link: string }) => {
+    const updateRealId = ({link}: { link: string }) => {
         const id = link.split('=');
         setRealId(id[id.length - 1]);
     };
@@ -47,7 +50,7 @@ export const Dropzone = ({ thumbnail }: PageProps<{ thumbnail: string }>) => {
                 leaveFrom="opacity-100"
                 leaveTo="opacity-0"
             >
-                <div className="fixed inset-0 bg-black/25" />
+                <div className="fixed inset-0 bg-black/25"/>
             </Transition.Child>
 
             <div className="fixed inset-0 overflow-y-auto">
@@ -61,16 +64,17 @@ export const Dropzone = ({ thumbnail }: PageProps<{ thumbnail: string }>) => {
                         leaveFrom="opacity-100 scale-100"
                         leaveTo="opacity-0 scale-95"
                     >
-                        <Dialog.Panel className="w-full max-w-[650px] h-[500px] transform overflow-hidden rounded-3xl bg-[#222] p-6 text-left align-middle shadow-xl transition-all grid">
+                        <Dialog.Panel
+                            className="w-full max-w-[650px] h-[500px] transform overflow-hidden rounded-3xl bg-[#222] p-6 text-left align-middle shadow-xl transition-all grid">
                             <div className="flex items-center justify-center h-full max-h-1/2">
                                 <div className="flex justify-center items-center border rounded-2xl w-6/12 h-1/4 p-6">
-                                    <AiFillYoutube className="text-3xl text-[#9EDBF4]" />
+                                    <AiFillYoutube className="text-3xl text-[#9EDBF4]"/>
                                     <input
                                         type="text"
                                         value={data.url}
                                         onChange={(e) => {
                                             setData('url', e.target.value);
-                                            updateRealId({ link: e.target.value });
+                                            updateRealId({link: e.target.value});
                                         }}
                                         placeholder="Paste Youtube Link"
                                         className="bg-[#222] border-none focus:outline-0 focus:outline-none text-gray-500"
@@ -80,25 +84,30 @@ export const Dropzone = ({ thumbnail }: PageProps<{ thumbnail: string }>) => {
                             <div className="">
                                 <div className="flex flex-col justify-center items-center">
                                     <div className="h-[50%]">
-                                        <img className="max-w-96" src={thumb} alt="" />
+                                        <img className="max-w-96" src={thumb} alt=""/>
                                     </div>
                                     <div className="flex items-center justify-center h-1/2 w-full mt-6">
                                         {loading ? (
-                                            <button className="text-black flex items-center justify-center text-md font-semibold p-3 bg-[#9EDBF4] rounded-lg">
+                                            <button
+                                                className="text-black flex items-center justify-center text-md font-semibold p-3 bg-[#9EDBF4] rounded-lg">
                                                 {done ? (
                                                     <>
-                                                        <CheckIcon className="mr-2 h-4 w-4" /> Téléchargement terminé
+                                                        <CheckIcon className="mr-2 h-4 w-4"/> Téléchargement terminé
                                                     </>
                                                 ) : (
                                                     <>
-                                                        <ReloadIcon className="mr-2 h-4 w-4 animate-spin" /> Téléchargement en cours
+                                                        <ReloadIcon
+                                                            className="mr-2 h-4 w-4 animate-spin"/> Téléchargement en
+                                                        cours
                                                     </>
 
                                                 )}
                                             </button>
                                         ) : (
-                                            <button className="text-black flex items-center justify-center text-md font-semibold p-3 bg-[#9EDBF4] rounded-lg" onClick={(e) => download(e)}>
-                                                <BiUpload className="mr-2" /> Import
+                                            <button
+                                                className="text-black flex items-center justify-center text-md font-semibold p-3 bg-[#9EDBF4] rounded-lg"
+                                                onClick={(e) => download({e: e})}>
+                                                <BiUpload className="mr-2"/> Import
                                             </button>
                                         )}
                                     </div>
